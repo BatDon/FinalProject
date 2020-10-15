@@ -1,17 +1,15 @@
 package com.udacity.gradle.builditbigger;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.util.Log;
+import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.udacity.gradle.Joke;
 //this is the javaJokes library
 //import com.udacity.gradle.Joke;
 
@@ -41,7 +39,11 @@ public class MainActivityFragment extends Fragment {
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .addTestDevice("ABCDEF012345")
                 .build();
-        mAdView.loadAd(adRequest);
+                mAdView.loadAd(adRequest);
+//                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+//                .addTestDevice("ABCDEF012345")
+//                .build();
+//        mAdView.loadAd(adRequest);
         return root;
     }
 
