@@ -13,6 +13,9 @@ buildscript {
         // in the individual module build.gradle files
     }
 
+//    compileJava.options.fork = true
+//    compileJava.options.forkOptions.executable = /usr/lib/jvm/java-8-openjdk-amd64
+
 }
 
 allprojects {

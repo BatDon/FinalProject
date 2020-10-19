@@ -15,7 +15,7 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7" inherit-compiler-output="true">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../../javaJokeJar">
       <excludeFolder url="file://$MODULE_DIR$/../../../javaJokeJar/.gradle" />
@@ -23,6 +23,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="Gradle: javaJokeJar.javaJokeJar" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: FinalProject.javaJokeJar.javaJokeJar" level="project" />
   </component>
 </module>
