@@ -2,6 +2,10 @@ package com.udacity.gradle.builditbigger;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
+import android.support.test.espresso.IdlingResource;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -11,9 +15,29 @@ import android.widget.Toast;
 
 import com.example.androidjokelibrary.JokeActivity;
 import com.udacity.gradle.Joke;
+import com.udacity.gradle.builditbigger.IdlingResource.SimpleIdlingResource;
+import com.udacity.gradle.builditbigger.JokeDownloader.JokeDownloader;
 
 
+//public class MainActivity extends AppCompatActivity implements JokeDownloader.JokeDelayerCallback  {
 public class MainActivity extends AppCompatActivity {
+
+    //testing
+    @Nullable
+    private SimpleIdlingResource mIdlingResource;
+
+    /**
+     * Only called from test, creates and returns a new {@link SimpleIdlingResource}.
+     */
+    @VisibleForTesting
+    @NonNull
+    public IdlingResource getIdlingResource() {
+        if (mIdlingResource == null) {
+            mIdlingResource = new SimpleIdlingResource();
+        }
+        return mIdlingResource;
+    }
+
 
     public static final String JOKE_FROM_JAVA_JOKE_JAR="com.udacity.gradle.builditbigger.Java_joke";
 
@@ -21,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getIdlingResource();
     }
 
 
@@ -57,12 +83,20 @@ public class MainActivity extends AppCompatActivity {
             String joke=jokeClass.getJoke();
         Toast.makeText(this, joke, Toast.LENGTH_SHORT).show();
 
-            Intent intent=new Intent(this, JokeActivity.class);
-            intent.putExtra(JOKE_FROM_JAVA_JOKE_JAR, joke);
-            startActivity(intent);
+//            Intent intent=new Intent(this, JokeActivity.class);
+//            intent.putExtra(JOKE_FROM_JAVA_JOKE_JAR, joke);
+//            startActivity(intent);
 
+            new EndpointsAsyncTask(mIdlingResource).execute(null, null, null);
+
+//            new JokeDownloader().downloadJoke(this, MainActivity.this, mIdlingResource);
 
     }
+
+//    @Override
+//    public void onDone(String joke){
+//        new StartJokeActivity(joke);
+//    }
 
 
 }
