@@ -1,4 +1,4 @@
-package com.example.android.builditbigger;
+package com.udacity.gradle.builditbigger;
 
 //import android.support.test.espresso.Espresso;
 //import android.support.test.espresso.IdlingResource;
@@ -65,7 +65,7 @@ import static org.hamcrest.Matchers.notNullValue;
 //import android.support.test.espresso.ViewAssertion;
 
 
-//@RunWith(AndroidJUnit4.class)
+@RunWith(AndroidJUnit4.class)
 public class IdlingResourceTest {
 
     /**
@@ -129,3 +129,4 @@ public class IdlingResourceTest {
 //        }
 //    }
 }
+

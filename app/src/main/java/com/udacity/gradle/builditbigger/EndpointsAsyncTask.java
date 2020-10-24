@@ -25,7 +25,6 @@ public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
     }
 
     public EndpointsAsyncTask(){
-        this.simpleIdlingResource=simpleIdlingResource;
     }
 
 //    public interface JokeDelayerCallback{
@@ -55,12 +54,12 @@ public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
 
         try {
             //commenting out for testing
-//            myApiService.getJoke().execute().getMyBeanJoke();;
+            myApiService.getJoke().execute().getMyBeanJoke();;
             //Log.i("EndpointsAsyncTask, in try section");
             int i = 0;
             i++;
-//            return null;
-            return "What do you call a pig that does karate?\nA pork chop.";
+            return null;
+//            return "What do you call a pig that does karate?\nA pork chop.";
         }catch (Throwable t) {
 //            return e.getMessage();
             return null;
@@ -75,11 +74,15 @@ public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
     @Override
     protected void onPostExecute(String result) {
 
-        simpleIdlingResource.setIdleState(true);
-        Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+        if(result!=null) {
 
-        StartJokeActivity startJokeActivity=new StartJokeActivity(result);
-
+//            simpleIdlingResource.setIdleState(true);
+            //Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+            StartJokeActivity startJokeActivity=new StartJokeActivity(result);
+        }
+        if(simpleIdlingResource!=null){
+            simpleIdlingResource.setIdleState(true);
+        }
 
 
     }

@@ -25,9 +25,12 @@ public class StartJokeActivity extends AppCompatActivity {
 
     public StartJokeActivity(String joke){
 
-        Intent intent=new Intent(this, JokeActivity.class);
-        intent.putExtra(JOKE_FROM_JAVA_JOKE_JAR, joke);
-        startActivity(intent);
+        if(joke!=null) {
+
+            Intent intent = new Intent(this, JokeActivity.class);
+            intent.putExtra(JOKE_FROM_JAVA_JOKE_JAR, joke);
+            startActivity(intent);
+        }
     }
 
 

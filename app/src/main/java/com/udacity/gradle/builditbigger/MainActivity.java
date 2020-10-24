@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.androidjokelibrary.JokeActivity;
+//import com.udacity.gradle.Joke;
 import com.udacity.gradle.Joke;
 import com.udacity.gradle.builditbigger.IdlingResource.SimpleIdlingResource;
 import com.udacity.gradle.builditbigger.JokeDownloader.JokeDownloader;
