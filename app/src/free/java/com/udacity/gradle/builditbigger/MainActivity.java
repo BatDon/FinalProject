@@ -15,6 +15,9 @@ import android.widget.Toast;
 
 import com.example.androidjokelibrary.JokeActivity;
 //import com.udacity.gradle.Joke;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.udacity.gradle.Joke;
 import com.udacity.gradle.builditbigger.EndpointsAsyncTask;
 import com.udacity.gradle.builditbigger.IdlingResource.SimpleIdlingResource;
@@ -28,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     //testing
     @Nullable
     private SimpleIdlingResource mIdlingResource;
+
+    private InterstitialAd mInterstitialAd;
 
     /**
      * Only called from test, creates and returns a new {@link SimpleIdlingResource}.
@@ -48,6 +53,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //setting up interstatial add
+        mInterstitialAd = new InterstitialAd(this);
+//        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_ad_unit_id));
+//        // Load an interstitial ad
+//        mInterstitialAd.loadAd(adRequest);
+//        mInterstitialAd.setAdListener(new AdListener() {
+//            @Override
+//            public void onAdClosed() {
+//                // Load the next interstitial ad if one isn't already loaded. Then, kick off a task
+//                // to retrieve a joke
+//                startTask();
+//            }
+//        });
 
         getIdlingResource();
     }
@@ -84,22 +103,44 @@ public class MainActivity extends AppCompatActivity {
         Joke jokeClass=new Joke();
 //        jokeTextView.setText(jokeClass.getJoke());
             String joke=jokeClass.getJoke();
-        Toast.makeText(this, joke, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, joke, Toast.LENGTH_SHORT).show();
 
-            Intent intent=new Intent(this, JokeActivity.class);
-            intent.putExtra(JOKE_FROM_JAVA_JOKE_JAR, joke);
-            startActivity(intent);
+//            Intent intent=new Intent(this, JokeActivity.class);
+//            intent.putExtra(JOKE_FROM_JAVA_JOKE_JAR, joke);
+//            startActivity(intent);
 
-            new EndpointsAsyncTask(mIdlingResource).execute(null, null, null);
+            startAsyncTask();
 
 //            new JokeDownloader().downloadJoke(this, MainActivity.this, mIdlingResource);
 
     }
 
+    private void showInterstatialAd(){
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Log.i("free/MainActivity","Interstatial Ad can't be shown. It hasn't loaded yet");
+//            startTask();
+        }
+    }
+
+    private void loadInterstatialAd() {
+            //loads anew interstatial ad every time activty is launched
+            mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        }
+        // Kick off a task to retrieve a joke
+//        new EndpointsAsyncTask(this).execute(mCategory);
+
+
 //    @Override
 //    public void onDone(String joke){
 //        new StartJokeActivity(joke);
 //    }
+
+    private void startAsyncTask() {
+        new EndpointsAsyncTask(mIdlingResource).execute(null, null, null);
+    }
+
 
 
 }

@@ -3,6 +3,7 @@ package com.udacity.gradle.builditbigger;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.example.androidjokelibrary.JokeActivity;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -11,6 +12,7 @@ import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 import com.udacity.gradle.builditbigger.IdlingResource.SimpleIdlingResource;
 import com.udacity.gradle.builditbigger.backend.myApi.MyApi;
+import com.udacity.gradle.builditbigger.backend.myApi.model.MyBean;
 
 import java.io.IOException;
 
@@ -58,13 +60,16 @@ public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
 
         try {
             //commenting out for testing
-            myApiService.getJoke().execute().getMyBeanJoke();;
+            Log.i("Endpoints","try starting");
+            MyBean myBean=myApiService.getJoke().execute();
+            String jokeString=myBean.getMyBeanJoke();
+            Log.i("EndPoints background","jokeString= "+jokeString);
+            return myBean.getMyBeanJoke();
+//            return myApiService.getJoke().execute().getMyBeanJoke();
             //Log.i("EndpointsAsyncTask, in try section");
-            int i = 0;
-            i++;
-            return null;
 //            return "What do you call a pig that does karate?\nA pork chop.";
         }catch (Throwable t) {
+            Log.i("Endpoints error", "catching error");
 //            return e.getMessage();
             return null;
         }
@@ -78,7 +83,10 @@ public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
     @Override
     protected void onPostExecute(String result) {
 
+        Log.i("EndpointsAsyncTask","onPostExecuted called");
+
         if(result!=null) {
+            Log.i("EndpointsAsyncTask","result= "+result);
 //            Intent intent=new Intent(this, JokeActivity.class);
 //            intent.putExtra(JOKE_FROM_JAVA_JOKE_JAR, result);
 //            startActivity(intent);

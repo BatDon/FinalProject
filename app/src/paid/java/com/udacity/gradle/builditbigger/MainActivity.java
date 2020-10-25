@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     @Nullable
     private SimpleIdlingResource mIdlingResource;
 
+
+
     /**
      * Only called from test, creates and returns a new {@link SimpleIdlingResource}.
      */
@@ -84,11 +86,11 @@ public class MainActivity extends AppCompatActivity {
         Joke jokeClass=new Joke();
 //        jokeTextView.setText(jokeClass.getJoke());
             String joke=jokeClass.getJoke();
-        Toast.makeText(this, joke, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, joke, Toast.LENGTH_SHORT).show();
 
-            Intent intent=new Intent(this, JokeActivity.class);
-            intent.putExtra(JOKE_FROM_JAVA_JOKE_JAR, joke);
-            startActivity(intent);
+//            Intent intent=new Intent(this, JokeActivity.class);
+//            intent.putExtra(JOKE_FROM_JAVA_JOKE_JAR, joke);
+//            startActivity(intent);
 
             new EndpointsAsyncTask(mIdlingResource).execute(null, null, null);
 
