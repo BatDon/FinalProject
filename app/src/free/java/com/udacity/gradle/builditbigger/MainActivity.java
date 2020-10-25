@@ -16,8 +16,10 @@ import android.widget.Toast;
 import com.example.androidjokelibrary.JokeActivity;
 //import com.udacity.gradle.Joke;
 import com.udacity.gradle.Joke;
+import com.udacity.gradle.builditbigger.EndpointsAsyncTask;
 import com.udacity.gradle.builditbigger.IdlingResource.SimpleIdlingResource;
 import com.udacity.gradle.builditbigger.JokeDownloader.JokeDownloader;
+import com.udacity.gradle.builditbigger.R;
 
 
 //public class MainActivity extends AppCompatActivity implements JokeDownloader.JokeDelayerCallback  {
@@ -84,9 +86,9 @@ public class MainActivity extends AppCompatActivity {
             String joke=jokeClass.getJoke();
         Toast.makeText(this, joke, Toast.LENGTH_SHORT).show();
 
-//            Intent intent=new Intent(this, JokeActivity.class);
-//            intent.putExtra(JOKE_FROM_JAVA_JOKE_JAR, joke);
-//            startActivity(intent);
+            Intent intent=new Intent(this, JokeActivity.class);
+            intent.putExtra(JOKE_FROM_JAVA_JOKE_JAR, joke);
+            startActivity(intent);
 
             new EndpointsAsyncTask(mIdlingResource).execute(null, null, null);
 

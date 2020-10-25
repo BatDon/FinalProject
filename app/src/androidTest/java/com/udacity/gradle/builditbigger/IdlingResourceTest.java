@@ -21,13 +21,7 @@ import android.support.test.espresso.IdlingResource;
 import android.support.test.runner.AndroidJUnit4;
 
 import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
 
-import com.udacity.gradle.builditbigger.EndpointsAsyncTask;
-import com.udacity.gradle.builditbigger.MainActivity;
-import com.udacity.gradle.builditbigger.R;
-
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -35,13 +29,9 @@ import org.junit.runner.RunWith;
 
 import java.util.concurrent.ExecutionException;
 
-import android.support.test.*;
-
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.notNullValue;
 
 //import static android.support.test.espresso.action.ViewActions.click;
@@ -102,7 +92,8 @@ public class IdlingResourceTest {
         // the String returned in the onPostExecute is being retrieved
         Object randomJoke = endpointsAsyncTask.get();
 
-        // If the string is not null, then we got a value, aka a joke
+        // If string is not null then test passes
+        //a joke was successfully received from GCE
         notNullValue((Class<Object>) randomJoke);
     }
 

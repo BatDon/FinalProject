@@ -1,9 +1,10 @@
 package com.udacity.gradle.builditbigger;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
-import android.widget.Toast;
 
+import com.example.androidjokelibrary.JokeActivity;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
@@ -12,6 +13,8 @@ import com.udacity.gradle.builditbigger.IdlingResource.SimpleIdlingResource;
 import com.udacity.gradle.builditbigger.backend.myApi.MyApi;
 
 import java.io.IOException;
+
+import static com.example.androidjokelibrary.JokeActivity.JOKE_FROM_JAVA_JOKE_JAR;
 
 
 public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
@@ -22,6 +25,7 @@ public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
 
     public EndpointsAsyncTask(SimpleIdlingResource simpleIdlingResource){
         this.simpleIdlingResource=simpleIdlingResource;
+//        this.context=context;
     }
 
     public EndpointsAsyncTask(){
@@ -75,10 +79,13 @@ public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
     protected void onPostExecute(String result) {
 
         if(result!=null) {
+//            Intent intent=new Intent(this, JokeActivity.class);
+//            intent.putExtra(JOKE_FROM_JAVA_JOKE_JAR, result);
+//            startActivity(intent);
 
 //            simpleIdlingResource.setIdleState(true);
             //Toast.makeText(context, result, Toast.LENGTH_LONG).show();
-            StartJokeActivity startJokeActivity=new StartJokeActivity(result);
+            com.udacity.gradle.builditbigger.StartJokeActivity startJokeActivity=new com.udacity.gradle.builditbigger.StartJokeActivity(result);
         }
         if(simpleIdlingResource!=null){
             simpleIdlingResource.setIdleState(true);
