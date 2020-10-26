@@ -3,7 +3,8 @@ package com.udacity.gradle.builditbigger.backend;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
-import com.udacity.gradle.Joke;
+import com.example.javajokesupplier.Joke;
+//import com.udacity.gradle.Joke;
 //import com.example.gradle.Joke;
 //import com.example.gradle.Joke;
 
@@ -21,6 +22,20 @@ import sun.rmi.runtime.Log;
                 packagePath = ""
         )
 )
+
+public class MyEndpoint {
+
+    /** A simple endpoint joke method that takes retrieves a joke */
+    @ApiMethod(name = "getJokeBean")
+    public MyBean getJokeBean() {
+        Joke jokeClass=new Joke();
+        MyBean response = new MyBean();
+        String joke=jokeClass.getJoke();
+        response.setJoke(joke);
+
+        return response;
+    }
+
 //public class MyEndpoint {
 //
 //    /** A simple endpoint method that takes a name and says Hi back */
@@ -34,16 +49,6 @@ import sun.rmi.runtime.Log;
 //
 //}
 
-public class MyEndpoint {
 
-    /** A simple endpoint method that takes a name and says Hi back */
-    @ApiMethod(name = "getJoke")
-    public MyBean getJoke() {
-        Joke joke=new Joke();
-        MyBean response = new MyBean();
-        response.setData(joke.getJoke());
-
-        return response;
-    }
 
 }

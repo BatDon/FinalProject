@@ -1,13 +1,17 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.cloud.tools.endpoints-framework-client'
 
+
 buildscript {
     repositories {
         jcenter()
     }
     dependencies {
         classpath 'com.google.cloud.tools:endpoints-framework-gradle-plugin:1.0.2'
+
     }
+
+
 }
 
 android {
@@ -42,6 +46,10 @@ android {
         }
     }
 
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
+
     flavorDimensions "version-01"
     productFlavors {
         free{
@@ -68,9 +76,15 @@ dependencies {
 //    implementation 'com.android.support:appcompat:28.0.0'
     freeImplementation 'com.google.android.gms:play-services-ads:11.8.0'
 //    implementation 'com.google.android.gms:play-services-ads:11.8.0'
-    implementation 'com.google.api-client:google-api-client:1.23.0'
-    implementation 'com.google.http-client:google-http-client-android:1.23.0'
+//    changed version here
+//    implementation 'com.google.api-client:google-api-client:1.23.0'
+//    implementation 'com.google.http-client:google-http-client-android:1.23.0'
+    implementation 'com.google.api-client:google-api-client-android:1.24.1'
+    implementation 'com.google.http-client:google-http-client-android:1.24.1'
     implementation 'com.google.code.findbugs:jsr305:3.0.1'
+
+    //added here
+    endpointsServer project(path: ':backend', configuration: 'endpoints')
 
 //    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
 //        exclude group: 'com.android.support', module: 'support-annotations'
@@ -89,8 +103,10 @@ dependencies {
 
 //    testImplementation 'junit:junit:4.13'
 
+    implementation project (':backend')
     implementation project (':androidJokeLibrary')
-    implementation files('../libs/jokeSupplier.jar')
+    implementation project (':javajokeSupplier')
+//    implementation files('../libs/jokeSupplier.jar')
 
 
     //Testing
